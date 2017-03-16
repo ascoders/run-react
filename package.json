@@ -1,0 +1,27 @@
+{
+  "name": "run-react",
+  "version": "0.0.1",
+  "description": "run webpack!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "tsc"
+  },
+  "bin": "built/cli.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ascoders/run.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ascoders/run/issues"
+  },
+  "homepage": "https://github.com/ascoders/run#readme",
+  "devDependencies": {
+    "@types/webpack": "^2.2.11",
+    "ts-loader": "^2.0.1",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1"
+  }
+}
