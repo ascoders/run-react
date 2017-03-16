@@ -1,18 +1,21 @@
 {
   "name": "run-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "run webpack!",
-  "main": "index.js",
+  "main": "built/cli.js",
+  "typings": "cli.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "",
     "prepublish": "tsc"
   },
-  "bin": "built/cli.js",
+  "bin": {
+    "run-react": "built/cli.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ascoders/run.git"
   },
-  "author": "",
+  "author": "ascoders",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ascoders/run/issues"
