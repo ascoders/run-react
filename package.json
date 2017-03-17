@@ -1,11 +1,13 @@
 {
   "name": "run-react",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "run webpack!",
   "main": "built/cli.js",
   "typings": "cli.ts",
   "scripts": {
     "test": "",
+    "webpack": "node built/src/webpack-dev-server.js",
+    "start": "npm-run-all --parallel -l webpack",
     "prepublish": "tsc"
   },
   "bin": {
@@ -21,10 +23,15 @@
     "url": "https://github.com/ascoders/run/issues"
   },
   "homepage": "https://github.com/ascoders/run#readme",
-  "devDependencies": {
-    "@types/webpack": "^2.2.11",
+  "dependencies": {
+    "@types/node": "^7.0.8",
+    "commander": "^2.9.0",
+    "npm-run-all": "^4.0.2",
+    "react-hot-loader": "^1.3.1",
     "ts-loader": "^2.0.1",
     "typescript": "^2.2.1",
-    "webpack": "^2.2.1"
-  }
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "devDependencies": {}
 }

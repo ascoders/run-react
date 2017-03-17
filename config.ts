@@ -1,4 +1,10 @@
 import * as path from 'path'
+import * as process from 'process'
+
+// 入口文件
+export const entrys = [
+    path.join(process.cwd(), 'index.ts')
+]
 
 // 本地 server 端口号
 export const localPort = 8080

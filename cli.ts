@@ -1,3 +1,7 @@
 #!/usr/bin/env node
 
-console.log(123)
+import { execSync } from 'child_process'
+
+const child = execSync('npm start', {
+    stdio: 'inherit'
+})

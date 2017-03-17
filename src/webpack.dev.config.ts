@@ -8,7 +8,7 @@ export default {
     entry: [
         `webpack-dev-server/client?http://localhost:${config.localWebpackPort}`,
         'webpack/hot/only-dev-server',
-        './built/src/client/index.js'
+        ...config.entrys
     ],
 
     output: {
