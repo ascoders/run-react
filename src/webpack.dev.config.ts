@@ -43,6 +43,8 @@ export default {
             path.join(__dirname, '../../node_modules'),
             // 可能是打平安装，所以搜索一下上级目录
             path.join(__dirname, '../../../'),
+            // 其他的包，得从当前运行的项目中查找
+            path.join(process.cwd(), 'node_modules')
         ]
     },
 
