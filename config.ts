@@ -26,7 +26,7 @@ export const entrys = projectConfig.entrys ? projectConfig.entrys.map(entry => {
 }) : []
 
 // 本地 server 端口号
-export const localPort = projectConfig.localPort || 8080
+export const serverPort = projectConfig.localPort || 8080
 
 // 本地 dev 模式 webpack 文件服务端口号
 export const webpackPort = projectConfig.webpackPort || 9091

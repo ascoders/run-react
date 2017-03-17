@@ -17,7 +17,5 @@ const server = new webpackDevServer(webpack(webpackDevConfig), {
 })
 
 server.listen(config.webpackPort, 'localhost', () => {
-    console.log('__dirname', __dirname)
-    console.log('cwd', process.cwd())
-    console.log(colors.green(`webpack hot bundle: http://localhost:${config.webpackPort}/bundle.js`))
+    console.log(colors.green(`Webpack hot bundle: http://localhost:${config.webpackPort}/bundle.js`))
 })
