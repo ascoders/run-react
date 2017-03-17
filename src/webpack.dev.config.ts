@@ -6,14 +6,14 @@ export default {
     devtool: 'cheap-module-source-map' as 'cheap-module-source-map',
 
     entry: [
-        `webpack-dev-server/client?http://localhost:${config.localWebpackPort}`,
+        `webpack-dev-server/client?http://localhost:${config.webpackPort}`,
         'webpack/hot/only-dev-server',
         ...config.entrys
     ],
 
     output: {
         path: __dirname,
-        publicPath: `http://localhost:${config.localWebpackPort}/`,
+        publicPath: `http://localhost:${config.webpackPort}/`,
         filename: 'bundle.js'
     },
 

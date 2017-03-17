@@ -4,6 +4,7 @@ import webpackDevConfig from './webpack.dev.config'
 import * as config from '../config'
 import * as fs from 'fs'
 import * as path from 'path'
+import * as colors from 'colors'
 
 const server = new webpackDevServer(webpack(webpackDevConfig), {
     publicPath: webpackDevConfig.output.publicPath,
@@ -15,6 +16,8 @@ const server = new webpackDevServer(webpack(webpackDevConfig), {
     }
 })
 
-server.listen(config.localWebpackPort, 'localhost', () => {
-    console.log(`webpack hot bundle: http://localhost:${config.localWebpackPort}/bundle.js`)
+server.listen(config.webpackPort, 'localhost', () => {
+    console.log('__dirname', __dirname)
+    console.log('cwd', process.cwd())
+    console.log(colors.green(`webpack hot bundle: http://localhost:${config.webpackPort}/bundle.js`))
 })

@@ -5,6 +5,10 @@ import * as process from 'process'
 interface ProjectConfig {
     // 入口文件
     entrys: string[]
+    // 本地 server 端口号
+    localPort: number
+    // webpack 文件服务端口号
+    webpackPort: number
 }
 
 // 读取当前项目的配置文件
@@ -22,10 +26,10 @@ export const entrys = projectConfig.entrys ? projectConfig.entrys.map(entry => {
 }) : []
 
 // 本地 server 端口号
-export const localPort = 8080
+export const localPort = projectConfig.localPort || 8080
 
 // 本地 dev 模式 webpack 文件服务端口号
-export const localWebpackPort = 9091
+export const webpackPort = projectConfig.webpackPort || 9091
 
 // 静态资源路径前缀
 export const publicPath = 'static'
