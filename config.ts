@@ -1,10 +1,25 @@
 import * as path from 'path'
+import * as fs from 'fs'
 import * as process from 'process'
 
+interface ProjectConfig {
+    // 入口文件
+    entrys: string[]
+}
+
+// 读取当前项目的配置文件
+let projectConfig: ProjectConfig
+
+try {
+    projectConfig = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'run-react.json')).toString())
+} catch (error) {
+    throw Error(`create 'run-react.json' in root directory`)
+}
+
 // 入口文件
-export const entrys = [
-    path.join(process.cwd(), 'index.ts')
-]
+export const entrys = projectConfig.entrys ? projectConfig.entrys.map(entry => {
+    return path.join(process.cwd(), entry)
+}) : []
 
 // 本地 server 端口号
 export const localPort = 8080
