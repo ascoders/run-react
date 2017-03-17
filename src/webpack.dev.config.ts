@@ -2,8 +2,6 @@ import * as webpack from 'webpack'
 import * as config from '../config'
 import * as path from 'path'
 
-console.log(path.join(__dirname, '../../node_modules'))
-
 export default {
     devtool: 'cheap-module-source-map' as 'cheap-module-source-map',
 
@@ -42,7 +40,9 @@ export default {
     resolve: {
         modules: [
             // 所有 npm 包都从该项目根目录查找
-            path.join(__dirname, '../../node_modules')
+            path.join(__dirname, '../../node_modules'),
+            // 可能是打平安装，所以搜索一下上级目录
+            path.join(__dirname, '../../../'),
         ]
     },
 
