@@ -37,6 +37,15 @@ export default {
         ]
     },
 
+    resolve: {
+        modules: [
+            // 当前项目根目录
+            path.join(process.cwd(), 'node_modules'),
+            // 该项目根目录
+            path.join(__dirname, '../../node_modules')
+        ]
+    },
+
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
