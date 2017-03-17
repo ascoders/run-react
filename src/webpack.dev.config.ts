@@ -39,9 +39,7 @@ export default {
 
     resolve: {
         modules: [
-            // 当前项目根目录
-            path.join(process.cwd(), 'node_modules'),
-            // 该项目根目录
+            // 所有 npm 包都从该项目根目录查找
             path.join(__dirname, '../../node_modules')
         ]
     },
