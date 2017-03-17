@@ -20,19 +20,19 @@ try {
     throw Error(`create 'run-react.json' in root directory`)
 }
 
-// 入口文件
+/**
+ * 入口文件
+ */
 export const entrys = projectConfig.entrys ? projectConfig.entrys.map(entry => {
     return path.join(process.cwd(), entry)
 }) : []
 
-// 本地 server 端口号
+/**
+ * server 端口号
+ */
 export const serverPort = projectConfig.localPort || 8080
 
-// 本地 dev 模式 webpack 文件服务端口号
+/**
+ * webpack 文件服务端口号
+ */
 export const webpackPort = projectConfig.webpackPort || 9091
-
-// 静态资源路径前缀
-export const publicPath = 'static'
-
-// 发布静态资源路径前缀
-export const staticPathPrefixProduction = '/'

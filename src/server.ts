@@ -1,11 +1,13 @@
 import * as http from 'http'
-import * as config from '../config'
 import * as color from 'colors'
+
+import * as config from '../config'
+import html from './html'
 
 const server = http.createServer((req, res) => {
     res.statusCode = 200
     res.setHeader('Content-Type', 'text/html')
-    res.end('Hello World\n')
+    res.end(html)
 })
 
 server.listen(config.serverPort, () => {
