@@ -2,6 +2,8 @@ import * as webpack from 'webpack'
 import * as config from '../config'
 import * as path from 'path'
 
+console.log(path.join(__dirname, '../../node_modules'))
+
 export default {
     devtool: 'cheap-module-source-map' as 'cheap-module-source-map',
 
