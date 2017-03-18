@@ -11,6 +11,7 @@ function md5(text: string) {
 const dirMd5 = md5(process.cwd())
 
 console.log('cwd', process.cwd())
+console.log('dir', path.join(__dirname, '../../dlls'))
 
 export default {
     entry: {
