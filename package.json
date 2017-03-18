@@ -1,6 +1,6 @@
 {
   "name": "run-react",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "run webpack!",
   "main": "built/cli.js",
   "typings": "cli.ts",
