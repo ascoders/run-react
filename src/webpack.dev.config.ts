@@ -2,6 +2,8 @@ import * as webpack from 'webpack'
 import * as config from '../config'
 import * as path from 'path'
 
+const projectRoot = process.cwd()
+
 const webpackConfig = {
     devtool: 'cheap-module-source-map' as 'cheap-module-source-map',
 
@@ -21,17 +23,19 @@ const webpackConfig = {
         rules: [
             {
                 test: /\.(jsx|js)?$/,
-                exclude: [/node_modules/],
+                include: [projectRoot],
                 use: ['react-hot-loader']
             }, {
                 test: /\.(tsx|ts)?$/,
-                exclude: [/node_modules/],
+                include: [projectRoot],
                 use: ['react-hot-loader', 'ts-loader']
             }, {
                 test: /\.json$/,
+                include: [projectRoot],
                 use: ['json-loader']
             }, {
                 test: /\.md$/,
+                include: [projectRoot],
                 use: ['text-loader']
             }
         ]
@@ -44,7 +48,7 @@ const webpackConfig = {
             // 可能是打平安装，所以搜索一下上级目录
             path.join(__dirname, '../../../'),
             // 其他的包，得从当前运行的项目中查找
-            path.join(process.cwd(), 'node_modules')
+            path.join(projectRoot, 'node_modules')
         ]
     },
 
