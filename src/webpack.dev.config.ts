@@ -56,7 +56,9 @@ const webpackConfig = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
-    ]
+    ],
+
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
 }
 
 // 如果有 dll，就添加读取 dll 的插件
