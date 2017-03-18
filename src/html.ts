@@ -10,6 +10,13 @@ export default `
       content="telephone=no">
 <title>run-react</title>
 
+<style>
+      html, body {
+            margin: 0;
+            padding: 0;
+      }
+</style>
+
 <body>
     <div id='react-dom'></div>
 </body>
