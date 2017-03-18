@@ -2,7 +2,7 @@ import * as webpack from 'webpack'
 import * as config from '../config'
 import * as path from 'path'
 
-export default {
+const webpackConfig = {
     devtool: 'cheap-module-source-map' as 'cheap-module-source-map',
 
     entry: [
@@ -55,10 +55,18 @@ export default {
             }
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        // new webpack.DllReferencePlugin({
-        //     context: '.',
-        //     manifest: require(path.join(process.cwd(), 'built/static/dll/library-mainfest.json'))
-        // })
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 }
+
+// 如果有 dll，就添加读取 dll 的插件
+if (config.dlls.length > 0) {
+    webpackConfig.plugins.push(
+        new webpack.DllReferencePlugin({
+            context: '.',
+            manifest: require(path.join(__dirname, '../../dlls', `${config.dirMd5}-mainfest.json`))
+        })
+    )
+}
+
+export default webpackConfig

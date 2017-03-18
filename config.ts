@@ -1,6 +1,11 @@
 import * as path from 'path'
 import * as fs from 'fs'
 import * as process from 'process'
+import * as crypto from 'crypto'
+
+function md5(text: string) {
+    return crypto.createHash('md5').update(text).digest('hex')
+}
 
 interface ProjectConfig {
     // 入口文件
@@ -43,3 +48,6 @@ export const webpackPort = projectConfig.webpackPort || 9091
  * 需要 dll 的包名
  */
 export const dlls = projectConfig.dlls || []
+
+// 当前路径的 md5
+export const dirMd5 = md5(process.cwd())

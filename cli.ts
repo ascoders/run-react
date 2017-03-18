@@ -2,6 +2,7 @@
 
 import { execSync } from 'child_process'
 import * as path from 'path'
+import * as config from './config'
 const packageJson = require('../package.json')
 
 const webpackPath = path.join(__dirname, '../node_modules/.bin/webpack')
@@ -20,9 +21,14 @@ commander
     .parse(process.argv)
 
 if (commander.dev) {
-    execSync(`${webpackPath} --config ${webpackDllPath}`, {
-        stdio: 'inherit'
-    })
+    // 设置了 dll 才会解析
+    if (config.dlls.length > 0) {
+        console.log('Start package dlls')
+        execSync(`${webpackPath} --config ${webpackDllPath}`, {
+            stdio: 'inherit'
+        })
+        console.log('Finshed package dlls')
+    }
 
     const child = execSync(`${concurrentlyPath} --kill-others --prefix command "node ${webpackDevServerPath}" "node ${serverPath}"`, {
         stdio: 'inherit'
