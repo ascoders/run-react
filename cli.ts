@@ -20,7 +20,9 @@ commander
     .parse(process.argv)
 
 if (commander.dev) {
-    execSync(`${webpackPath} --config ${webpackDllPath}`)
+    execSync(`${webpackPath} --config ${webpackDllPath}`, {
+        stdio: 'inherit'
+    })
 
     const child = execSync(`${concurrentlyPath} --kill-others --prefix command "node ${webpackDevServerPath}" "node ${serverPath}"`, {
         stdio: 'inherit'
