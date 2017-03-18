@@ -2,11 +2,29 @@
 
 import { execSync } from 'child_process'
 import * as path from 'path'
+const packageJson = require('../package.json')
 
 const concurrentlyPath = path.join(__dirname, '../node_modules/.bin/concurrently')
+const avaPath = path.join(__dirname, '../node_modules/.bin/ava')
 const webpackDevServerPath = path.join(__dirname, 'src/webpack-dev-server.js')
 const serverPath = path.join(__dirname, 'src/server.js')
 
-const child = execSync(`${concurrentlyPath} --kill-others --prefix command "node ${webpackDevServerPath}" "node ${serverPath}"`, {
-    stdio: 'inherit'
-})
+const commander = require('commander')
+
+commander
+    .version(packageJson.version)
+    .option('-d, --dev', 'Start dev server')
+    .option('-t, --test', 'Run test')
+    .parse(process.argv)
+
+if (commander.dev) {
+    const child = execSync(`${concurrentlyPath} --kill-others --prefix command "node ${webpackDevServerPath}" "node ${serverPath}"`, {
+        stdio: 'inherit'
+    })
+}
+
+if (commander.test) {
+    const child = execSync(`${avaPath} **/*.test.ts`, {
+        stdio: 'inherit'
+    })
+}
