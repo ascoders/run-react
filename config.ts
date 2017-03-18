@@ -9,6 +9,8 @@ interface ProjectConfig {
     localPort: number
     // webpack 文件服务端口号
     webpackPort: number
+    // 需要 dll 的包名
+    dlls: string[]
 }
 
 // 读取当前项目的配置文件
@@ -36,3 +38,8 @@ export const serverPort = projectConfig.localPort || 8080
  * webpack 文件服务端口号
  */
 export const webpackPort = projectConfig.webpackPort || 9091
+
+/**
+ * 需要 dll 的包名
+ */
+export const dlls = projectConfig.dlls || []
