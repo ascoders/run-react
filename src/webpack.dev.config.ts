@@ -23,9 +23,11 @@ const webpackConfig = {
         rules: [
             {
                 test: /\.(jsx|js)?$/,
+                exclude: [/node_modules/],
                 use: ['react-hot-loader']
             }, {
                 test: /\.(tsx|ts)?$/,
+                exclude: [/node_modules/],
                 use: ['react-hot-loader', 'ts-loader']
             }, {
                 test: /\.json$/,
@@ -46,7 +48,7 @@ const webpackConfig = {
             // 其他的包和项目文件，得从当前运行的项目中查找
             path.join(projectRoot)
         ],
-        // extensions: ['.js', '.jsx', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
 
     plugins: [
