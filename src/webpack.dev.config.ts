@@ -45,7 +45,8 @@ const webpackConfig = {
             path.join(__dirname, '../../../'),
             // 其他的包和项目文件，得从当前运行的项目中查找
             path.join(projectRoot)
-        ]
+        ],
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
 
     plugins: [
@@ -56,9 +57,7 @@ const webpackConfig = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
-    ],
-
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    ]
 }
 
 // 如果有 dll，就添加读取 dll 的插件
