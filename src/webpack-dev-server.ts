@@ -7,6 +7,8 @@ import * as path from 'path'
 import * as colors from 'colors'
 
 const server = new webpackDevServer(webpack(webpackDevConfig), {
+    // 让其可以 server 所有当前目录下的文件，比如 dlls
+    contentBase: path.join(__dirname, '../../'),
     publicPath: webpackDevConfig.output.publicPath,
     hot: true,
     compress: true,
