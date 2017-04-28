@@ -72,4 +72,12 @@ if (config.dlls.length > 0) {
     )
 }
 
+// 添加自定义配置
+config.rules.forEach(rule => {
+    webpackConfig.module.rules.push({
+        test: new RegExp(rule.test),
+        use: rule.use
+    })
+})
+
 export default webpackConfig

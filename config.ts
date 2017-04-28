@@ -16,6 +16,11 @@ interface ProjectConfig {
     webpackPort: number
     // 需要 dll 的包名
     dlls: string[]
+    // 自定义规则
+    rules?: Array<{
+        test: string
+        use: string[]
+    }>
 }
 
 // 读取当前项目的配置文件
@@ -49,5 +54,12 @@ export const webpackPort = projectConfig.webpackPort || 9091
  */
 export const dlls = projectConfig.dlls || []
 
-// 当前路径的 md5
+/**
+ * 当前路径的 md5
+ */
 export const dirMd5 = md5(process.cwd())
+
+/**
+ * 自定义规则
+ */
+export const rules = projectConfig.rules || []
