@@ -1,5 +1,6 @@
 import * as http from 'http'
 import * as color from 'colors'
+import * as open from 'opn'
 
 import * as config from '../config'
 import html from './html'
@@ -12,4 +13,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(config.serverPort, () => {
     console.log(color.green(`Server: http://localhost:${config.serverPort}`))
+    open(`http://localhost:${config.serverPort}`)
 })
