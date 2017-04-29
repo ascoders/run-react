@@ -38,9 +38,15 @@
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/@types/colors/download/@types/colors-1.1.1.tgz#49733928fb47cf11254b7611e2f6f85ff6020521"
 
-"@types/node@^7.0.8":
+"@types/node@*", "@types/node@^7.0.8":
   version "7.0.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.8.tgz#25e4dd804b630c916ae671233e6d71f6ce18124a"
+
+"@types/opn@^3.0.28":
+  version "3.0.28"
+  resolved "http://registry.npm.taobao.org/@types/opn/download/@types/opn-3.0.28.tgz#097d0d1c9b5749573a5d96df132387bb6d02118a"
+  dependencies:
+    "@types/node" "*"
 
 abbrev@1:
   version "1.1.0"
@@ -2582,9 +2588,9 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-opn@4.0.2:
+opn@4.0.2, opn@^4.0.2:
   version "4.0.2"
-  resolved "https://registry.yarnpkg.com/opn/-/opn-4.0.2.tgz#7abc22e644dff63b0a96d5ab7f2790c0f01abc95"
+  resolved "http://registry.npm.taobao.org/opn/download/opn-4.0.2.tgz#7abc22e644dff63b0a96d5ab7f2790c0f01abc95"
   dependencies:
     object-assign "^4.0.1"
     pinkie-promise "^2.0.0"
