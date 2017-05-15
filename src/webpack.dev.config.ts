@@ -76,8 +76,19 @@ if (config.dlls.length > 0) {
 config.rules.forEach(rule => {
     const newRule = {
         ...rule,
-        test: new RegExp(rule.test)
+        test: new RegExp(rule.test),
+        include: rule.include ? rule.include.map(str => new RegExp(str)) : null,
+        exclude: rule.include ? rule.exclude.map(str => new RegExp(str)) : null
     }
+
+    if (newRule.include === null) {
+        delete newRule.include
+    }
+
+    if (newRule.exclude === null) {
+        delete newRule.exclude
+    }
+
     webpackConfig.module.rules.push(newRule)
 })
 

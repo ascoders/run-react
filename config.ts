@@ -20,6 +20,8 @@ interface ProjectConfig {
     rules?: Array<{
         test: string
         use: string[]
+        include?: string[]
+        exclude?: string[]
     }>
 }
 

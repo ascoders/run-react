@@ -15,7 +15,8 @@ const server = new webpackDevServer(webpack(webpackDevConfig), {
     historyApiFallback: true,
     stats: {
         colors: true
-    }
+    },
+    headers: { "Access-Control-Allow-Origin": "*" }
 })
 
 server.listen(config.webpackPort, 'localhost', () => {
