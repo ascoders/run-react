@@ -3,16 +3,28 @@
 import { execSync } from 'child_process'
 import * as path from 'path'
 import * as config from './config'
+import * as fs from 'fs'
 const packageJson = require('../package.json')
 
-const webpackPath = path.join(__dirname, '../node_modules/.bin/webpack')
-const concurrentlyPath = path.join(__dirname, '../node_modules/.bin/concurrently')
-const avaPath = path.join(__dirname, '../node_modules/.bin/ava')
+const webpackPath = getPathInNodeModules('.bin/webpack')
+const concurrentlyPath = getPathInNodeModules('.bin/concurrently')
+const avaPath = getPathInNodeModules('.bin/ava')
+
 const webpackDevServerPath = path.join(__dirname, 'src/webpack-dev-server.js')
 const webpackDllPath = path.join(__dirname, 'src/webpack.dll.config.js')
 const serverPath = path.join(__dirname, 'src/server.js')
 
 const commander = require('commander')
+
+// 获取 node_modules 中文件
+function getPathInNodeModules(targetPath: string) {
+    const currentPath = path.join(__dirname, '../node_modules', targetPath)
+    if (fs.existsSync(currentPath)) {
+        return currentPath
+    } else {
+        return path.join(__dirname, '../../node_modules', targetPath)
+    }
+}
 
 commander
     .version(packageJson.version)
