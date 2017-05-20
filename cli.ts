@@ -32,23 +32,28 @@ commander
     .option('-t, --test', 'Run test')
     .parse(process.argv)
 
-if (commander.dev) {
-    // 设置了 dll 才会解析
-    if (config.dlls.length > 0) {
-        console.log('Start package dlls')
-        execSync(`${webpackPath} --config ${webpackDllPath}`, {
+commander.command('start')
+    .description('Start dev server')
+    .action(() => {
+        // 设置了 dll 才会解析
+        if (config.dlls.length > 0) {
+            console.log('Start package dlls')
+            execSync(`${webpackPath} --config ${webpackDllPath}`, {
+                stdio: 'inherit'
+            })
+            console.log('Finshed package dlls')
+        }
+
+        const child = execSync(`${concurrentlyPath} --kill-others --prefix command "node ${webpackDevServerPath}"`, {
             stdio: 'inherit'
         })
-        console.log('Finshed package dlls')
-    }
-
-    const child = execSync(`${concurrentlyPath} --kill-others --prefix command "node ${webpackDevServerPath}" "node ${serverPath}"`, {
-        stdio: 'inherit'
     })
-}
 
-if (commander.test) {
-    const child = execSync(`${avaPath} **/*.test.ts`, {
-        stdio: 'inherit'
+commander.command('Run test')
+    .description('Start dev server')
+    .action(() => {
+        const child = execSync(`${avaPath} **/*.test.ts`, {
+            stdio: 'inherit'
+        })
     })
-}
+

@@ -1,6 +1,7 @@
 import * as webpack from 'webpack'
 import * as config from '../config'
 import * as path from 'path'
+import * as CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
 
 const projectRoot = process.cwd()
 
@@ -58,8 +59,14 @@ const webpackConfig = {
             }
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
-    ]
+        new webpack.NoEmitOnErrorsPlugin(),
+        new CaseSensitivePathsPlugin()
+    ],
+
+    performance: {
+        // 关闭性能提示
+        hints: false,
+    }
 }
 
 // 如果有 dll，就添加读取 dll 的插件
