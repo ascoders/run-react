@@ -26,11 +26,7 @@ function getPathInNodeModules(targetPath: string) {
     }
 }
 
-commander
-    .version(packageJson.version)
-    .option('-d, --dev', 'Start dev server')
-    .option('-t, --test', 'Run test')
-    .parse(process.argv)
+commander.version(packageJson.version)
 
 commander.command('start')
     .description('Start dev server')
@@ -57,3 +53,4 @@ commander.command('Run test')
         })
     })
 
+commander.parse(process.argv)

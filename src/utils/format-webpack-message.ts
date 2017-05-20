@@ -126,5 +126,3 @@ export function formatWebpackMessages(json: any) {
   }
   return result
 }
-
-module.exports = formatWebpackMessages
