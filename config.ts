@@ -37,7 +37,9 @@ if (fs.existsSync(runReactPath)) {
 
 if (fs.existsSync(packageJsonPath)) {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString())
-    projectConfig = packageJson['run-react']
+    if (packageJson['run-react']) {
+        projectConfig = packageJson['run-react']
+    }
 }
 
 if (!projectConfig) {
