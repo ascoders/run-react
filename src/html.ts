@@ -22,7 +22,7 @@ export default `
 </body>
 
 ${config.dlls.length > 0 ? `
-      <script src='http://localhost:${config.webpackPort}/dlls/${config.dirMd5}.dll.js'></script>` : null
+      <script src='http://localhost:${config.webpackPort}/dlls/${config.dirMd5}.dll.js'></script>` : ``
       }
 
 <script src='http://localhost:${config.webpackPort}/bundle.js'></script>

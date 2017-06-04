@@ -28,10 +28,20 @@ interface ProjectConfig {
 // 读取当前项目的配置文件
 let projectConfig: ProjectConfig
 
-try {
-    projectConfig = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'run-react.json')).toString())
-} catch (error) {
-    throw Error(`create 'run-react.json' in root directory`)
+const runReactPath = path.join(process.cwd(), 'run-react.json')
+const packageJsonPath = path.join(process.cwd(), 'package.json')
+
+if (fs.existsSync(runReactPath)) {
+    projectConfig = JSON.parse(fs.readFileSync(runReactPath).toString())
+}
+
+if (fs.existsSync(packageJsonPath)) {
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString())
+    projectConfig = packageJson['run-react']
+}
+
+if (!projectConfig) {
+    throw Error(`add run-react to package.json or create 'run-react.json' in root directory.`)
 }
 
 /**

@@ -35,10 +35,7 @@ export function createCompiler() {
     // options so we are going to "massage" the warnings and errors and present
     // them in a readable focused way.
     const messages = formatWebpackMessages(stats.toJson({}, true))
-    const isSuccessful = !messages.errors.length && !messages.warnings.length
-    if (isSuccessful) {
-      console.log(colors.green('Compiled successfully!'))
-    }
+
     if (isFirstCompile) {
       runServer()
     }
