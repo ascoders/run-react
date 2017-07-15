@@ -18,11 +18,15 @@ const commander = require('commander')
 
 // 获取 node_modules 中文件
 function getPathInNodeModules(targetPath: string) {
-    const currentPath = path.join(__dirname, '../node_modules', targetPath)
-    if (fs.existsSync(currentPath)) {
-        return currentPath
+    const path1 = path.join(__dirname, '../node_modules', targetPath)
+    const path2 = path.join(__dirname, '../../node_modules', targetPath)
+    const path3 = path.join(__dirname, '../../../node_modules', targetPath)
+    if (fs.existsSync(path1)) {
+        return path1
+    } else if (fs.existsSync(path2)) {
+        return path2
     } else {
-        return path.join(__dirname, '../../node_modules', targetPath)
+        return path3
     }
 }
 
