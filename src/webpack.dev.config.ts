@@ -29,7 +29,7 @@ const webpackConfig = {
             }, {
                 test: /\.(tsx|ts)?$/,
                 exclude: [/node_modules/],
-                use: ['react-hot-loader', 'ts-loader']
+                use: ['react-hot-loader', 'awesome-typescript-loader']
             }, {
                 test: /\.json$/,
                 use: ['json-loader']

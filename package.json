@@ -1,6 +1,6 @@
 {
   "name": "run-react",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "run webpack!",
   "main": "built/cli.js",
   "typings": "cli.ts",
@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/webpack": "^3.0.2",
     "ava": "^0.18.2",
+    "awesome-typescript-loader": "^3.2.2",
     "case-sensitive-paths-webpack-plugin": "^2.0.0",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
