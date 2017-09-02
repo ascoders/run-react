@@ -1,7 +1,6 @@
 import * as webpack from 'webpack'
 import * as config from '../config'
 import * as path from 'path'
-import * as CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
 
 const projectRoot = process.cwd()
 
@@ -59,8 +58,7 @@ const webpackConfig = {
             }
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new CaseSensitivePathsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ],
 
     performance: {
