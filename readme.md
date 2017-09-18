@@ -5,7 +5,7 @@ run react project.
 ## Install
 
 ```bash
-yarn add run-react --dev
+npm i run-react -D
 ```
 
 ## Add `run-react` to package.json
@@ -38,6 +38,18 @@ yarn add run-react --dev
 
 ## start dev server
 
-```typescript
-run-react --dev
+```bash
+run-react develop
+```
+
+## production build
+
+```bash
+run-react production
+```
+
+## test
+
+```bash
+run-react test
 ```
