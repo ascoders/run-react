@@ -1,6 +1,13 @@
-import * as config from '../config'
+import * as fs from 'fs';
+import * as path from 'path';
+import * as yargs from 'yargs';
+import * as config from './config';
+import { md5 } from './utils/math'
+import { getProjectConfig, getDllName } from './utils/webpack-runtime-helper'
 
-export default `
+const projectConfig = getProjectConfig()
+
+export default (webpackPort: number) => `
 <!DOCTYPE html>
 <html lang="zh-cn">
 <meta charset="utf-8">
@@ -21,10 +28,10 @@ export default `
     <div id='react-dom'></div>
 </body>
 
-${config.dlls.length > 0 ? `
-      <script src='http://localhost:${config.webpackPort}/dlls/${config.dirMd5}.dll.js'></script>` : ``
+${projectConfig.dlls.length > 0 ? `
+      <script src='http://127.0.0.1:${webpackPort}/dlls/${getDllName()}.dll.js'></script>` : ``
       }
 
-<script src='http://localhost:${config.webpackPort}/bundle.js'></script>
+<script src='http://127.0.0.1:${webpackPort}/bundle.js'></script>
 </html>
-`
+`;

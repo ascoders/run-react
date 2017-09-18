@@ -2,17 +2,26 @@
 
 import { execSync } from 'child_process'
 import * as path from 'path'
-import * as config from './config'
 import * as fs from 'fs'
+import { spinner } from './utils/log'
+import { exec } from './utils/exec'
+
 const packageJson = require('../package.json')
+
+// 当前项目目录
+const projectCwd = process.cwd();
+
+// 当前 cli 的目录。
+// 让所有 webpack 命令都在 cli 目录执行，否则 webpack 会自动寻找当前目录 webpack，会受到当前目录 webpack 影响
+const cliCwd = path.join(__dirname, '..');
 
 const webpackPath = getPathInNodeModules('.bin/webpack')
 const concurrentlyPath = getPathInNodeModules('.bin/concurrently')
 const avaPath = getPathInNodeModules('.bin/ava')
 
-const webpackDevServerPath = path.join(__dirname, 'src/webpack-dev-server.js')
-const webpackDllPath = path.join(__dirname, 'src/webpack.dll.config.js')
-const serverPath = path.join(__dirname, 'src/server.js')
+const webpackDevServerPath = path.join(__dirname, 'webpack-dev-server.js')
+const webpackDllPath = path.join(__dirname, 'webpack.dll.config.js')
+const serverPath = path.join(__dirname, 'server.js')
 
 const commander = require('commander')
 
@@ -34,22 +43,23 @@ commander.version(packageJson.version)
 
 commander.command('start')
     .description('Start dev server')
-    .action(() => {
+    .action(async () => {
         // 设置了 dll 才会解析
-        if (config.dlls.length > 0) {
-            console.log('Start package dlls')
-            execSync(`${webpackPath} --config ${webpackDllPath}`, {
-                stdio: 'inherit'
+        // if (config.dlls.length > 0) {
+        await spinner('编译 dlls', async () => {
+            await exec(`${webpackPath} --config ${webpackDllPath} --env.projectCwd ${projectCwd} --env.cliCwd ${cliCwd}`, {
+                cwd: cliCwd
             })
-            console.log('Finshed package dlls')
-        }
+        })
+        // }
 
-        const child = execSync(`${concurrentlyPath} --kill-others --prefix command "node ${webpackDevServerPath}"`, {
-            stdio: 'inherit'
+        execSync(`${concurrentlyPath} -r --kill-others --prefix command "node ${webpackDevServerPath} --progress --env.projectCwd ${projectCwd} --env.cliCwd ${cliCwd}"`, {
+            stdio: 'inherit',
+            cwd: cliCwd
         })
     })
 
-commander.command('Run test')
+commander.command('test')
     .description('Start dev server')
     .action(() => {
         const child = execSync(`${avaPath} **/*.test.ts`, {
