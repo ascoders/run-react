@@ -17,18 +17,18 @@ interface IProjectConfig {
   }>
 }
 
-export const projectCwd = yargs.argv.env.projectCwd;
-export const cliCwd = yargs.argv.env.cliCwd;
+export const projectCwd = yargs.argv.env && yargs.argv.env.projectCwd;
+export const cliCwd = yargs.argv.env && yargs.argv.env.cliCwd;
 
 /**
  * 获取项目配置信息
  */
-export function getProjectConfig() {
+export function getProjectConfig(currentProjectCwd = projectCwd) {
   // 读取当前项目的配置文件
   let projectConfig: IProjectConfig
 
-  const runReactPath = path.join(projectCwd, 'run-react.json')
-  const packageJsonPath = path.join(projectCwd, 'package.json')
+  const runReactPath = path.join(currentProjectCwd, 'run-react.json')
+  const packageJsonPath = path.join(currentProjectCwd, 'package.json')
 
   if (fs.existsSync(runReactPath)) {
     projectConfig = JSON.parse(fs.readFileSync(runReactPath).toString())

@@ -2,7 +2,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "module": "commonjs",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "target": "es6",
         "removeComments": true,
         "preserveConstEnums": true,
