@@ -7,14 +7,15 @@ import { spinner } from './utils/log'
 import { exec } from './utils/exec'
 import * as commander from 'commander'
 import { getProjectConfig } from './utils/webpack-runtime-helper';
+import { findPath } from './utils/package-finder'
 
 const cliPackageJson = require('../package.json')
 const projectCwd = process.cwd();
 const cliCwd = path.join(__dirname, '..');
 
-const webpackPath = path.join(__dirname, '../node_modules/.bin/webpack')
-const concurrentlyPath = path.join(__dirname, '../node_modules/.bin/concurrently')
-const avaPath = path.join(__dirname, '../node_modules/.bin/ava')
+const webpackPath = findPath('webpack')
+const concurrentlyPath = findPath('concurrently')
+const avaPath = findPath('ava')
 
 const webpackDevServerPath = path.join(__dirname, 'webpack-dev-server.js')
 const webpackDllPath = path.join(__dirname, 'webpack.dll.config.js')
