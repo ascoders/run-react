@@ -1,6 +1,7 @@
 import * as path from "path"
 import * as webpack from "webpack"
 import { projectCwd, getDllName, getDllDir, getProjectConfig, cliCwd } from './utils/webpack-runtime-helper'
+import * as UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 
 // 项目配置
 const projectConfig = getProjectConfig()
@@ -49,9 +50,7 @@ const webpackConfig = {
         warnings: false
       }
     }),
-    new webpack.ProgressPlugin({
-      profile: false
-    })
+    new UglifyJSPlugin(),
   ],
 
   resolve: {

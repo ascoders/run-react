@@ -61,9 +61,7 @@ export async function getWebpackConfig(validatePort: number) {
             }),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin(),
-            new webpack.ProgressPlugin({
-                profile: false
-            })
+            new webpack.ProgressPlugin()
         ],
 
         performance: {
