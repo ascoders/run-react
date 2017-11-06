@@ -43,13 +43,6 @@ const webpackConfig = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false,
-      mangle: false,
-      compress: {
-        warnings: false
-      }
-    }),
     new UglifyJSPlugin(),
   ],
 
