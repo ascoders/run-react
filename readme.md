@@ -1,6 +1,6 @@
-run react project.
+# run-react
 
-# CLI
+Run react project.
 
 ## Install
 

@@ -49,8 +49,8 @@ export function getProjectConfig(currentProjectCwd = projectCwd) {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString())
     if (packageJson['run-react']) {
       projectConfig = {
-        ...JSON.parse(fs.readFileSync(runReactPath).toString()),
-        ...packageJson['run-react']
+        ...packageJson['run-react'],
+        ...projectConfig
       }
     }
   }
