@@ -9,6 +9,8 @@ import * as commander from 'commander'
 import { getProjectConfig } from './utils/webpack-runtime-helper';
 import { findPath } from './utils/package-finder'
 
+import init from './commanders/init'
+
 const cliPackageJson = require('../package.json')
 const projectCwd = process.cwd();
 const cliCwd = path.join(__dirname, '..');
@@ -59,6 +61,11 @@ commander.command('test')
         execSync(`${avaPath} **/*.test.ts`, {
             stdio: 'inherit'
         })
+    })
+
+commander.command('init')
+    .action(async () => {
+        await init()
     })
 
 commander.parse(process.argv)
