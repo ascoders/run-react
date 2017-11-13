@@ -2,6 +2,7 @@ import * as yargs from 'yargs';
 import * as fs from 'fs'
 import * as path from 'path'
 import { md5 } from './math'
+import * as _ from 'lodash'
 
 class ProjectConfig {
   // 入口文件
@@ -39,19 +40,13 @@ export function getProjectConfig(currentProjectCwd = projectCwd) {
   const packageJsonPath = path.join(currentProjectCwd, 'package.json')
 
   if (fs.existsSync(runReactPath)) {
-    projectConfig = {
-      ...JSON.parse(fs.readFileSync(runReactPath).toString()),
-      ...projectConfig
-    }
+    projectConfig = _.merge(projectConfig, fs.readFileSync(runReactPath).toString())
   }
 
   if (fs.existsSync(packageJsonPath)) {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString())
     if (packageJson['run-react']) {
-      projectConfig = {
-        ...packageJson['run-react'],
-        ...projectConfig
-      }
+      projectConfig = _.merge(projectConfig, packageJson['run-react'])
     }
   }
 
