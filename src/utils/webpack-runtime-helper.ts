@@ -3,18 +3,26 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { md5 } from './math'
 
-interface IProjectConfig {
+class ProjectConfig {
   // 入口文件
-  entrys: string[]
+  entrys: string[] = ["src/index"]
   // 需要 dll 的包名
-  dlls: string[]
+  dlls: string[] = []
   // 自定义规则
   rules?: Array<{
     test: string
     use: string[]
     include?: string[]
     exclude?: string[]
-  }>
+  }> = []
+  // production 配置
+  production?: {
+    path?: string
+    filename?: string
+  } = {
+    path: "built",
+    filename: "bundle.js"
+  }
 }
 
 export const projectCwd = yargs.argv.env && yargs.argv.env.projectCwd;
@@ -25,32 +33,31 @@ export const cliCwd = yargs.argv.env && yargs.argv.env.cliCwd;
  */
 export function getProjectConfig(currentProjectCwd = projectCwd) {
   // 读取当前项目的配置文件
-  let projectConfig: IProjectConfig
+  let projectConfig = new ProjectConfig()
 
   const runReactPath = path.join(currentProjectCwd, 'run-react.json')
   const packageJsonPath = path.join(currentProjectCwd, 'package.json')
 
   if (fs.existsSync(runReactPath)) {
-    projectConfig = JSON.parse(fs.readFileSync(runReactPath).toString())
+    projectConfig = {
+      ...JSON.parse(fs.readFileSync(runReactPath).toString()),
+      ...projectConfig
+    }
   }
 
   if (fs.existsSync(packageJsonPath)) {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString())
     if (packageJson['run-react']) {
-      projectConfig = packageJson['run-react']
+      projectConfig = {
+        ...JSON.parse(fs.readFileSync(runReactPath).toString()),
+        ...packageJson['run-react']
+      }
     }
   }
 
   if (!projectConfig) {
     throw Error(`add run-react to package.json or create 'run-react.json' in root directory.`)
   }
-
-  // 设置默认值
-  projectConfig = Object.assign({
-    entrys: ['src/index'],
-    dlls: [],
-    rules: []
-  }, projectConfig)
 
   return projectConfig
 }
