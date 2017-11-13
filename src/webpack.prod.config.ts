@@ -10,8 +10,8 @@ const webpackConfig = {
   entry: projectConfig.entrys,
 
   output: {
-    path: path.join(projectCwd, "build"),
-    filename: "bundle.js",
+    path: path.join(projectCwd, projectConfig.production.path),
+    filename: projectConfig.production.filename,
     libraryTarget: "umd"
   },
 
