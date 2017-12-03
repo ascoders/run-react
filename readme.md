@@ -18,7 +18,11 @@ npm i run-react -D
     "dlls": [
         "react",
         "react-dom"
-    ]
+    ],
+    "production": {
+        "path": "built",
+        "filename": "bundle.js"
+    }
 }
 ```
 
