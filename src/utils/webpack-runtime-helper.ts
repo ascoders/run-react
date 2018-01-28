@@ -7,6 +7,8 @@ import * as _ from 'lodash'
 class ProjectConfig {
   // 入口文件
   entrys: string[] = ["src/index"]
+  // production entrys
+  productionEntrys: string[] = null
   // 需要 dll 的包名
   dlls: string[] = []
   // 自定义规则

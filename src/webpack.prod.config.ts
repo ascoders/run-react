@@ -7,7 +7,7 @@ import * as UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 const projectConfig = getProjectConfig()
 
 const webpackConfig = {
-  entry: projectConfig.entrys,
+  entry: projectConfig.productionEntrys || projectConfig.entrys,
 
   output: {
     path: path.join(projectCwd, projectConfig.production.path),

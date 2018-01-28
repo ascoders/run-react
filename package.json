@@ -1,6 +1,6 @@
 {
   "name": "run-react",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "run webpack!",
   "main": "built/index.js",
   "types": "src/index.ts",
